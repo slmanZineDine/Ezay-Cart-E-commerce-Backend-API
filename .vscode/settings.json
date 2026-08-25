@@ -1,0 +1,19 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "http://localhost:3001/v1/api",
+      // Admin
+      // "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3ODA1Nzk2NjAsImV4cCI6MTc4MDY2NjA2MH0.aCnmYfkqsaQ7gNAYhXdib-oXujS8imoyK6I8cCsu4t4",
+
+      // User - [Slman]
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoic2xtYW5AbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc4MTUyMTcyMCwiZXhwIjoxNzgyMTI2NTIwfQ.bA_TspkjZhFMM7sCRjLYuiUMCIirgknuW6lRTtyae40",
+
+      // User - [Ali]
+      // "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiYWxpQG1haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODA2NzE5NTYsImV4cCI6MTc4MDc1ODM1Nn0.biHWhqdDJlwua0Zo2rfHKYNmm9NmcC3DdV6MbqWVdDQ",
+
+      "userId": "1",
+      "productId": "1",
+      "reviewId": "1"
+    }
+  }
+}
