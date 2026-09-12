@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { UploadsModule } from './uploads/uploads.module';
 import { SecurityModule } from './common/modules/security/security.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -15,6 +16,8 @@ import { SecurityModule } from './common/modules/security/security.module';
       isGlobal: true,
       envFilePath: '.env.local',
     }),
+
+    ScheduleModule.forRoot(),
 
     // Global Modules
     SecurityModule,

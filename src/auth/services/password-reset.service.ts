@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, LessThan, Repository } from 'typeorm';
 
 import { AuthToken, AuthTokenType } from '../entities/auth-tokens.entity';
 
@@ -261,5 +261,16 @@ export class PasswordResetService {
       user.username,
       rawToken,
     );
+  }
+
+  // -------------------------
+  // DELETE EXPIRED AUTH TOKENS
+  // -------------------------
+  async deleteExpiredTokens(): Promise<number> {
+    const result = await this.tokenRepo.delete({
+      expiresAt: LessThan(new Date()),
+    });
+
+    return result.affected ?? 0;
   }
 }

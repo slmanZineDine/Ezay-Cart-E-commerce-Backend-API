@@ -12,7 +12,7 @@ import { TokensService } from './tokens.service';
 import { User } from 'src/users/users.entity';
 import { RefreshTokenContext } from '../interfaces/refresh-token-context';
 import { AuthRequestContext } from '../decorators/auth-context.decorator';
-import { Not, Repository } from 'typeorm';
+import { LessThan, Not, Repository } from 'typeorm';
 
 @Injectable()
 export class RefreshTokenService {
@@ -215,5 +215,17 @@ export class RefreshTokenService {
         revokeReason: RefreshTokenRevokeReason.PASSWORD_RESET,
       },
     );
+  }
+
+  // -------------------------
+  // DELETE REFRESH TOKENS
+  // -------------------------
+
+  async deleteExpiredTokens(): Promise<number> {
+    const result = await this.refreshTokenRepo.delete({
+      expiresAt: LessThan(new Date()),
+    });
+
+    return result.affected ?? 0;
   }
 }

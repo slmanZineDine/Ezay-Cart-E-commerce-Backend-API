@@ -17,6 +17,8 @@ import { RefreshTokenService } from './services/refresh-token.service';
 import { AuthCookieService } from './services/auth-cookie.service';
 import { RefreshToken } from './entities/refresh-tokens.entity';
 import { ChangePasswordService } from './services/change-password.service';
+import { RefreshTokenCleanupService } from './services/refresh-token-cleanup.service';
+import { AuthTokenCleanupService } from './services/auth-token-cleanup.service';
 
 @Module({
   imports: [
@@ -41,6 +43,8 @@ import { ChangePasswordService } from './services/change-password.service';
     RefreshTokenService,
     AuthCookieService,
     ChangePasswordService,
+    RefreshTokenCleanupService,
+    AuthTokenCleanupService,
   ],
   exports: [CryptoService, PasswordResetService],
 })
