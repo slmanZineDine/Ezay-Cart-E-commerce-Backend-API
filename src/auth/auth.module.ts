@@ -19,6 +19,7 @@ import { RefreshToken } from './entities/refresh-tokens.entity';
 import { ChangePasswordService } from './services/change-password.service';
 import { RefreshTokenCleanupService } from './services/refresh-token-cleanup.service';
 import { AuthTokenCleanupService } from './services/auth-token-cleanup.service';
+import { UserRegisteredListener } from './listeners/user-registered.listener';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { AuthTokenCleanupService } from './services/auth-token-cleanup.service';
     ChangePasswordService,
     RefreshTokenCleanupService,
     AuthTokenCleanupService,
+    UserRegisteredListener,
   ],
   exports: [CryptoService, PasswordResetService],
 })

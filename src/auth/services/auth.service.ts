@@ -9,15 +9,16 @@ import { CryptoService } from './crypto.service';
 import { EmailNotVerifiedException } from 'src/common/exceptions/email-not-verified.exception';
 import { RefreshTokenService } from './refresh-token.service';
 import { AuthRequestContext } from '../decorators/auth-context.decorator';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { UserRegisteredEvent } from '../events/user-registered.event';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
-    private readonly emailVerificationService: EmailVerificationService,
     private readonly cryptoService: CryptoService,
-    private readonly emailService: EmailService,
     private readonly refreshTokenService: RefreshTokenService,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   // -------------------------
@@ -37,15 +38,21 @@ export class AuthService {
     });
 
     // 2. Generate and save the token
-    const rawToken = await this.emailVerificationService.generateAndSaveToken(
-      newUser.id,
-    );
+    // const rawToken = await this.emailVerificationService.generateAndSaveToken(
+    //   newUser.id,
+    // );
 
-    // 5. Send the RAW token to the user via email service
-    await this.emailService.sendVerificationEmail(
-      dto.email,
-      dto.username,
-      rawToken,
+    // 3. Send the RAW token to the user via email service
+    // await this.emailService.sendVerificationEmail(
+    //   dto.email,
+    //   dto.username,
+    //   rawToken,
+    // );
+
+    // 2. Observer Pattern:Emit the UserRegisteredEvent
+    this.eventEmitter.emit(
+      'user.registered',
+      new UserRegisteredEvent(newUser.id, newUser.email, newUser.username),
     );
 
     return {

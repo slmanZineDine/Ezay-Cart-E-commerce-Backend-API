@@ -9,6 +9,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { UploadsModule } from './uploads/uploads.module';
 import { SecurityModule } from './common/modules/security/security.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     }),
 
     ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot(),
 
     // Global Modules
     SecurityModule,
