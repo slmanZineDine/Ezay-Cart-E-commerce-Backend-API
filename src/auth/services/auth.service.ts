@@ -97,4 +97,15 @@ export class AuthService {
       },
     };
   }
+
+  // -------------------------
+  // FACADE METHODS FOR CONTROLLER
+  // -------------------------
+  async refreshSession(refreshToken: string, context: AuthRequestContext) {
+    return this.refreshTokenService.refresh(refreshToken, context);
+  }
+
+  async logoutUser(refreshToken: string) {
+    return this.refreshTokenService.revoke(refreshToken);
+  }
 }

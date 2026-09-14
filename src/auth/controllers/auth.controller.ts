@@ -11,7 +11,6 @@ import { RegisterUserDto } from '../dto/register.user.dto';
 import { LoginDto } from '../dto/login.user.dto';
 import { AuthService } from '../services/auth.service';
 import { RefreshToken } from '../decorators/refresh-token.decorator';
-import { RefreshTokenService } from '../services/refresh-token.service';
 import {
   AuthContext,
   type AuthRequestContext,
@@ -26,7 +25,6 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly refreshTokenService: RefreshTokenService,
     private readonly authCookieService: AuthCookieService,
   ) {}
 
@@ -87,10 +85,7 @@ export class AuthController {
     @AuthContext() context: AuthRequestContext,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const result = await this.refreshTokenService.refresh(
-      refreshToken,
-      context,
-    );
+    const result = await this.authService.refreshSession(refreshToken, context);
 
     // Replace the old refresh token with the newly rotated token
     this.authCookieService.setRefreshToken(response, result.refreshToken);
@@ -118,7 +113,7 @@ export class AuthController {
     @RefreshToken() refreshToken: string,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const result = await this.refreshTokenService.revoke(refreshToken);
+    const result = await this.authService.logoutUser(refreshToken);
 
     this.authCookieService.clearRefreshToken(response);
 
