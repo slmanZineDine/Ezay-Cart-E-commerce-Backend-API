@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -10,8 +11,7 @@ import { AuthToken, AuthTokenType } from '../entities/auth-tokens.entity';
 
 import { UsersService } from 'src/users/users.service';
 
-import { EmailService } from 'src/common/modules/email/email.service';
-import { EmailTemplate } from 'src/common/modules/email/types/email-template.enum';
+import { EmailSenderService } from 'src/common/modules/email/email-sender.service';
 import { CryptoService } from './crypto.service';
 import { TokenCooldownService } from './token-cooldown.service';
 import { VerifyResetTokenDto } from '../dto/verify-reset-token.dto';
@@ -24,6 +24,7 @@ import {
   RefreshToken,
   RefreshTokenRevokeReason,
 } from '../entities/refresh-tokens.entity';
+import { EMAIL_SENDER } from 'src/common/modules/email/email-sender.interface';
 
 @Injectable()
 export class PasswordResetService {
@@ -34,7 +35,8 @@ export class PasswordResetService {
     private dataSource: DataSource,
     private readonly usersService: UsersService,
     private readonly cryptoService: CryptoService,
-    private readonly emailService: EmailService,
+    @Inject(EMAIL_SENDER)
+    private readonly emailService: EmailSenderService,
     private readonly tokenCooldownService: TokenCooldownService,
     private readonly refreshTokenService: RefreshTokenService,
   ) {}
@@ -256,11 +258,11 @@ export class PasswordResetService {
     await this.tokenRepo.save(resetToken);
 
     // 9. Send the raw code to the user's email
-    await this.emailService.sendPasswordResetEmail(
-      user.email,
-      user.username,
-      rawToken,
-    );
+    await this.emailService.sendPasswordResetEmail({
+      email: user.email,
+      username: user.username,
+      otp: rawToken,
+    });
   }
 
   // -------------------------

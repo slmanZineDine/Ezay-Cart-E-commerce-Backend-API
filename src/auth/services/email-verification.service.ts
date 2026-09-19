@@ -1,13 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthToken, AuthTokenType } from '../entities/auth-tokens.entity';
 import { UsersService } from 'src/users/users.service';
 
-import { EmailService } from 'src/common/modules/email/email.service';
+import { EmailSenderService } from 'src/common/modules/email/email-sender.service';
 import { ResendTokenDto } from '../dto/resend-token.dto';
 import { TokenCooldownService } from './token-cooldown.service';
 import { CryptoService } from './crypto.service';
+import { EMAIL_SENDER } from 'src/common/modules/email/email-sender.interface';
 
 @Injectable()
 export class EmailVerificationService {
@@ -17,7 +18,8 @@ export class EmailVerificationService {
 
     private readonly usersService: UsersService,
     private readonly cryptoService: CryptoService,
-    private readonly emailService: EmailService,
+    @Inject(EMAIL_SENDER)
+    private readonly emailService: EmailSenderService,
     private readonly tokenCooldownService: TokenCooldownService,
   ) {}
 
@@ -106,11 +108,11 @@ export class EmailVerificationService {
     const rawToken = await this.generateAndSaveToken(user.id, nextResendCount);
 
     // 6. Send the raw token to the user
-    await this.emailService.sendVerificationEmail(
-      user.email,
-      user.username,
-      rawToken,
-    );
+    await this.emailService.sendVerificationEmail({
+      email: user.email,
+      username: user.username,
+      token: rawToken,
+    });
 
     return {
       message:

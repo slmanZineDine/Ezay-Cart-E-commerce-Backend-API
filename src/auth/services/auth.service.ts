@@ -3,8 +3,6 @@ import { RegisterUserDto } from '../dto/register.user.dto';
 import { UserRole } from 'src/utils/enums';
 import { LoginDto } from '../dto/login.user.dto';
 import { UsersService } from 'src/users/users.service';
-import { EmailService } from 'src/common/modules/email/email.service';
-import { EmailVerificationService } from './email-verification.service';
 import { CryptoService } from './crypto.service';
 import { EmailNotVerifiedException } from 'src/common/exceptions/email-not-verified.exception';
 import { RefreshTokenService } from './refresh-token.service';

@@ -1,14 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { EmailVerificationService } from '../services/email-verification.service';
-import { EmailService } from 'src/common/modules/email/email.service';
+import { EmailSenderService } from 'src/common/modules/email/email-sender.service';
 import { UserRegisteredEvent } from '../events/user-registered.event';
+import { EMAIL_SENDER } from 'src/common/modules/email/email-sender.interface';
 
 @Injectable()
 export class UserRegisteredListener {
   constructor(
     private readonly emailVerificationService: EmailVerificationService,
-    private readonly emailService: EmailService,
+    @Inject(EMAIL_SENDER)
+    private readonly emailService: EmailSenderService,
   ) {}
 
   @OnEvent('user.registered')
@@ -17,10 +19,10 @@ export class UserRegisteredListener {
       event.userId,
     );
 
-    await this.emailService.sendVerificationEmail(
-      event.email,
-      event.username,
-      rawToken,
-    );
+    await this.emailService.sendVerificationEmail({
+      email: event.email,
+      username: event.username,
+      token: rawToken,
+    });
   }
 }
