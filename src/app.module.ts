@@ -5,11 +5,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { UploadsModule } from './uploads/uploads.module';
 import { SecurityModule } from './common/modules/security/security.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -46,9 +47,22 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
         // synchronize: config.get<boolean>('DB_SYNC'), // ⚠️ dev only
       }),
     }),
+
+    // Allow maximum 10 requests per 60 seconds (60000 ms)
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 10,
+      },
+    ]),
   ],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: ClassSerializerInterceptor },
+    // Apply rate limiting globally across all routes
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
   ],
 })
 export class AppModule {}

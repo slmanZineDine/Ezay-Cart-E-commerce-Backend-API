@@ -4,6 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { VerifyEmailDto } from '../dto/verify-email.dto';
 import { ResendTokenDto } from '../dto/resend-token.dto';
 import { EmailVerificationService } from '../services/email-verification.service';
+import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -18,6 +19,7 @@ export class EmailVerificationController {
   // -------------------------
 
   @Post('resend-verification')
+  @Throttle({ default: { limit: 2, ttl: 60000 } }) // Allow maximum 2 requests per 60 seconds to prevent email spamming
   @HttpCode(200)
   @ApiOperation({
     summary: 'Resend email verification token',
@@ -34,6 +36,7 @@ export class EmailVerificationController {
   // -------------------------
 
   @Post('verify-email')
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // Allow maximum 5 attempts per 60 seconds to prevent token guessing
   @HttpCode(200)
   @ApiOperation({
     summary: 'Verify email address',

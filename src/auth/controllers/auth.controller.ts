@@ -19,6 +19,7 @@ import { AuthCookieService } from '../services/auth-cookie.service';
 import { type Response } from 'express';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -34,6 +35,7 @@ export class AuthController {
   // -------------------------
 
   @Post('register')
+  @Throttle({ default: { limit: 3, ttl: 60000 } }) // Allow maximum 3 registration requests per 60 seconds
   @ApiOperation({
     summary: 'Register a new user',
     description: 'Creates a new user account.',
@@ -48,6 +50,7 @@ export class AuthController {
   // -------------------------
 
   @Post('login')
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // Allow maximum 5 login attempts per 60 seconds to prevent brute force
   @HttpCode(200)
   @ApiOperation({
     summary: 'Login user',

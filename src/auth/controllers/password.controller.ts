@@ -26,6 +26,7 @@ import { type JwtPayload } from '../interfaces/jwt-payload.interface';
 
 import { ChangePasswordDto } from '../dto/change-password.dto';
 import { ChangePasswordService } from '../services/change-password.service';
+import { Throttle } from '@nestjs/throttler';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -42,6 +43,7 @@ export class PasswordController {
   // -------------------------
 
   @Post('forgot-password')
+  @Throttle({ default: { limit: 3, ttl: 60000 } }) // Allow 3 requests per 60s to prevent email flooding while leaving room for your service cooldown
   @HttpCode(200)
   @ApiOperation({
     summary: 'Request password reset',
@@ -58,6 +60,7 @@ export class PasswordController {
   // -------------------------
 
   @Post('verify-reset-token')
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // Strict limit (5 attempts/min) to block OTP brute-force guessing
   @HttpCode(200)
   @ApiOperation({
     summary: 'Verify password reset token',
@@ -74,6 +77,7 @@ export class PasswordController {
   // -------------------------
 
   @Post('reset-password')
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // Strict limit (5 attempts/min) to protect token submission
   @HttpCode(200)
   @ApiOperation({
     summary: 'Reset password',
@@ -101,6 +105,7 @@ export class PasswordController {
   // -------------------------
 
   @Post('change-password')
+  @Throttle({ default: { limit: 5, ttl: 60000 } }) // Prevent brute-force guessing of the current password on an active session
   @ApiBearerAuth()
   @HttpCode(200)
   @UseGuards(JwtAuthGuard)
