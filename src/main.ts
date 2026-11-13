@@ -42,7 +42,7 @@ async function bootstrap() {
 
   // 1. Configure the DocumentBuilder with basic API information
   const config = new DocumentBuilder()
-    .setTitle('Ezay Cart API')
+    .setTitle('Eazy Cart API')
     .setDescription('Detailed documentation for the API endpoints')
     .setVersion('1.0')
     .addServer(

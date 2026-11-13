@@ -11,8 +11,11 @@ import { SecurityModule } from './common/modules/security/security.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { TypeOrmConfigService } from './config/typeorm.config';
+import { AppController } from './app.controller';
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -34,18 +37,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
     // ORM
     TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: config.getOrThrow<'postgres'>('DB_TYPE') as 'postgres',
-        host: config.getOrThrow<string>('DB_HOST'),
-        port: config.getOrThrow<number>('DB_PORT'),
-        // logging: true,
-        username: config.getOrThrow<string>('DB_USERNAME'),
-        password: config.getOrThrow<string>('DB_PASSWORD'),
-        database: config.getOrThrow<string>('DB_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        // synchronize: config.get<boolean>('DB_SYNC'), // ⚠️ dev only
-      }),
+      useClass: TypeOrmConfigService,
     }),
 
     // Allow maximum 10 requests per 60 seconds (60000 ms)
