@@ -42,6 +42,7 @@
     "class-validator": "^0.15.1",
     "cloudinary": "^2.10.0",
     "cookie-parser": "^1.4.7",
+    "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
     "nodemailer": "^9.0.5",
     "pg": "^8.20.0",
@@ -98,5 +99,11 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "allowScripts": {
+    "@nestjs/core@11.1.19": true,
+    "@scarf/scarf@1.4.0": true,
+    "bcrypt@6.0.0": true,
+    "unrs-resolver@1.11.1": true
   }
 }

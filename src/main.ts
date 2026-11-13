@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { setDefaultResultOrder } from 'node:dns';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 
 setDefaultResultOrder('ipv4first');
 
@@ -27,6 +28,9 @@ async function bootstrap() {
     origin: process.env.FRONTEND_URL,
     credentials: true,
   });
+
+  // Apply Helmet middleware for security headers
+  app.use(helmet());
 
   // Enable cookie parsing middleware
   app.use(cookieParser());
