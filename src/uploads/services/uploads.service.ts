@@ -28,7 +28,7 @@ export class UploadsService {
     const response =
       await this.storageProvider.generateUploadSignature(storageKey);
 
-    await this.registerPendingUpload(response.publicId);
+    await this.registerPendingUpload(response.publicId as string);
 
     return response;
   }
@@ -46,7 +46,7 @@ export class UploadsService {
       await this.storageProvider.generateUploadSignature(storageKey);
 
     // 2. Track the intended upload in our database log
-    await this.registerPendingUpload(response.publicId);
+    await this.registerPendingUpload(response.publicId as string);
 
     return response;
   }

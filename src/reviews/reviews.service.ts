@@ -142,8 +142,8 @@ export class ReviewsService {
       .getRawOne();
 
     return {
-      totalReviews: parseInt(stats.count) || 0,
-      averageRating: parseFloat(stats.average)?.toFixed(1) || '0.0',
+      totalReviews: parseInt(stats.count as string) || 0,
+      averageRating: parseFloat(stats.average as string)?.toFixed(1) || '0.0',
     };
   }
 }

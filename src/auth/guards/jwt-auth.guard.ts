@@ -40,7 +40,7 @@ export class JwtAuthGuard implements CanActivate {
 
     try {
       // Verify and decode JWT token
-      const payload: JwtPayload = this.jwtService.verify(token, {
+      const payload: JwtPayload = this.jwtService.verify(token as string, {
         secret: this.configService.getOrThrow<string>('JWT_SECRET'),
       });
 
@@ -50,6 +50,7 @@ export class JwtAuthGuard implements CanActivate {
       // Allow request to continue
       return true;
     } catch (error) {
+      console.error('JWT verification failed:', error);
       // Reject invalid or expired token
       throw new UnauthorizedException('Invalid or expired token');
     }

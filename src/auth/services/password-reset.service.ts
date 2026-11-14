@@ -126,7 +126,7 @@ export class PasswordResetService {
       );
 
       await queryRunner.commitTransaction();
-    } catch (error) {
+    } catch {
       await queryRunner.rollbackTransaction();
       throw new InternalServerErrorException(
         'Failed to reset password. Please try again later.',

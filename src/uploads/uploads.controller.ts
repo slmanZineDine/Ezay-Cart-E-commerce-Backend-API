@@ -1,28 +1,28 @@
-import { type IStorageProvider } from './services/storage-provider.interface';
+// import { type IStorageProvider } from './services/storage-provider.interface';
 import {
-  BadRequestException,
+  // BadRequestException,
   Body,
   Controller,
-  InternalServerErrorException,
+  // InternalServerErrorException,
   ParseIntPipe,
   Post,
-  UploadedFile,
-  UploadedFiles,
+  // UploadedFile,
+  // UploadedFiles,
   UseGuards,
-  UseInterceptors,
+  // UseInterceptors,
 } from '@nestjs/common';
-import {
-  FileFieldsInterceptor,
-  FileInterceptor,
-  FilesInterceptor,
-} from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+// import {
+//   FileFieldsInterceptor,
+//   FileInterceptor,
+//   FilesInterceptor,
+// } from '@nestjs/platform-express';
+// import { diskStorage } from 'multer';
+// import { extname } from 'path';
 import { UploadsService } from './services/uploads.service';
-import { CloudinaryService } from './services/cloudinary.service';
+// import { CloudinaryService } from './services/cloudinary.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-import { createSecureFilePipe } from 'src/common/pipes/file-upload.pipe';
+// import { createSecureFilePipe } from 'src/common/pipes/file-upload.pipe';
 import type { JwtPayload } from 'src/auth/interfaces/jwt-payload.interface';
 import { ApiBearerAuth } from '@nestjs/swagger';
 

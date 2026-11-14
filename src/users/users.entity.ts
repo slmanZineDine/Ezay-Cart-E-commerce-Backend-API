@@ -10,7 +10,6 @@ import {
   UpdateDateColumn,
   OneToMany,
   DeleteDateColumn,
-  OneToOne,
 } from 'typeorm';
 import { AuthToken } from '../auth/entities/auth-tokens.entity';
 import { RefreshToken } from '../auth/entities/refresh-tokens.entity';

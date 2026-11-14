@@ -1,6 +1,6 @@
-# Ezay Cart — E-commerce Backend API
+# Eazy Cart — E-commerce Backend API
 
-Ezay Cart is a RESTful backend API for an e-commerce application, built with **NestJS, TypeScript, PostgreSQL, and TypeORM**.
+Eazy Cart is a RESTful backend API for an e-commerce application, built with **NestJS, TypeScript, PostgreSQL, and TypeORM**.
 
 The project focuses on building a structured and secure backend with authentication, authorization, token management, user management, product management, reviews, file uploads, email verification, and password recovery.
 
@@ -305,7 +305,7 @@ Clone the repository:
 
 ```bash
 git clone <repository-url>
-cd ezay-cart
+cd Eazy-cart
 ```
 
 Install dependencies:
@@ -330,7 +330,7 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 DATABASE_USERNAME=postgres
 DATABASE_PASSWORD=your_password
-DATABASE_NAME=ezay_cart
+DATABASE_NAME=Eazy_cart
 
 # JWT
 JWT_ACCESS_SECRET=your_access_secret
@@ -359,7 +359,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 Create the PostgreSQL database:
 
 ```sql
-CREATE DATABASE ezay_cart;
+CREATE DATABASE Eazy_cart;
 ```
 
 Then run the migrations:

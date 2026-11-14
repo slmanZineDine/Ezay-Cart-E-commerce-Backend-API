@@ -151,8 +151,8 @@ export class UsersController {
   })
   @Roles(UserRole.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  delete(@Param('id', ParseIntPipe) id: number) {
-    this.usersService.delete(id);
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    await this.usersService.delete(id);
 
     return {
       message: `User ${id} deleted successfully`,

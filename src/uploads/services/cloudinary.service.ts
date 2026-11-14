@@ -2,10 +2,10 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
   v2 as cloudinary,
-  UploadApiResponse,
-  UploadApiErrorResponse,
+  // UploadApiResponse,
+  // UploadApiErrorResponse,
 } from 'cloudinary';
-import * as streamifier from 'streamifier';
+// import * as streamifier from 'streamifier';
 import { IStorageProvider } from './storage-provider.interface';
 import { CloudinaryProvider } from './cloudinary.provider';
 

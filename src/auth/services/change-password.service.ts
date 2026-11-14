@@ -82,7 +82,7 @@ export class ChangePasswordService {
 
       // 8. Commit both operations atomically
       await queryRunner.commitTransaction();
-    } catch (error) {
+    } catch {
       // Roll back both operations if anything fails
       await queryRunner.rollbackTransaction();
 

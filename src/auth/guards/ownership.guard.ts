@@ -25,7 +25,7 @@ export function CreateOwnershipGuard(serviceToken: Type<ResourceService>) {
       const resourceId = request.params.id;
 
       if (!user) return false;
-      if (!resourceId || !/^\d+$/.test(resourceId)) {
+      if (!resourceId || !/^\d+$/.test(resourceId as string)) {
         throw new BadRequestException(
           'Validation failed (numeric string is expected)',
         );

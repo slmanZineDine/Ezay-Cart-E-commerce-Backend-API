@@ -96,7 +96,7 @@ export class EmailVerificationService {
     });
 
     // 4. Validate cooldown and get next resend count in 1 clean step
-    let nextResendCount =
+    const nextResendCount =
       this.tokenCooldownService.validateAndGetNextResendCount(existingToken);
 
     if (existingToken) {
