@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 
 // Load .env.local only if it exists (used locally; ignored safely in cloud environments)
-dotenv.config({ path: '.env.*' });
+dotenv.config({ path: '.env.local' });
 
 const isProduction = process.env.NODE_ENV === 'production';
 
