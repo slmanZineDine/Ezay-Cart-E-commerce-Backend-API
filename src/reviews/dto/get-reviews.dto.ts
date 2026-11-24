@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
 
-import { ProductSortBy, SortOrder } from 'src/utils/enums';
+import { ProductSortBy, SortOrder } from '../../utils/enums';
 
 export class GetReviewsDTO {
   // ==================== pagination ====================

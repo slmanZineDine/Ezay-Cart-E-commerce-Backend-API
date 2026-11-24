@@ -8,7 +8,7 @@ import {
   MinLength,
   MaxLength,
 } from 'class-validator';
-import { Squish } from 'src/common/decorators/squish.decorator';
+import { Squish } from '../../common/decorators/squish.decorator';
 
 export class CreateReviewDto {
   @Squish()

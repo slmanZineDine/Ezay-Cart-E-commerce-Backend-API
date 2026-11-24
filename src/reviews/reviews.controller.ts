@@ -11,14 +11,14 @@ import {
 } from '@nestjs/common';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { ReviewsService } from './reviews.service';
-import { PaginationInterceptor } from 'src/common/interceptors/pagination.interceptor';
-import { CreateOwnershipGuard } from 'src/auth/guards/ownership.guard';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { PaginationInterceptor } from '../common/interceptors/pagination.interceptor';
+import { CreateOwnershipGuard } from '../auth/guards/ownership.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Review } from './reviews.entity';
-import { CurrentResource } from 'src/auth/decorators/current-resource.decorator';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { UserRole } from 'src/utils/enums';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { CurrentResource } from '../auth/decorators/current-resource.decorator';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { UserRole } from '../utils/enums';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('reviews')

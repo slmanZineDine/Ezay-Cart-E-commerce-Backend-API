@@ -1,10 +1,10 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
-import { UsersModule } from 'src/users/users.module';
+import { UsersModule } from '../users/users.module';
 import { SecurityModule } from '../common/modules/security/security.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EmailModule } from 'src/common/modules/email/email.module';
+import { EmailModule } from '../common/modules/email/email.module';
 import { EmailVerificationController } from './controllers/email-verification.controller';
 import { PasswordController } from './controllers/password.controller';
 import { EmailVerificationService } from './services/email-verification.service';

@@ -11,7 +11,7 @@ import { RefreshTokenService } from './refresh-token.service';
 import { JwtPayload } from '../interfaces/jwt-payload.interface';
 import { ChangePasswordDto } from '../dto/change-password.dto';
 import { DataSource, Not } from 'typeorm';
-import { User } from 'src/users/users.entity';
+import { User } from '../../users/users.entity';
 import {
   RefreshToken,
   RefreshTokenRevokeReason,

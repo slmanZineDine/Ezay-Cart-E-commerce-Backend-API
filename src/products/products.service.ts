@@ -5,7 +5,7 @@ import { Product } from './entities/products.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { GetProductsDTO } from './dto/get-products.dto';
-import { ReviewsService } from 'src/reviews/reviews.service';
+import { ReviewsService } from '../reviews/reviews.service';
 
 @Injectable()
 export class ProductsService {

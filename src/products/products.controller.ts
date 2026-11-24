@@ -14,16 +14,16 @@ import {
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import type { JwtPayload } from 'src/auth/interfaces/jwt-payload.interface';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import type { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { GetProductsDTO } from './dto/get-products.dto';
-import { PaginationInterceptor } from 'src/common/interceptors/pagination.interceptor';
-import { ReviewsService } from 'src/reviews/reviews.service';
-import { GetReviewsDTO } from 'src/reviews/dto/get-reviews.dto';
-import { CreateReviewDto } from 'src/reviews/dto/create-review.dto';
-import { CreateOwnershipGuard } from 'src/auth/guards/ownership.guard';
-import { CurrentResource } from 'src/auth/decorators/current-resource.decorator';
+import { PaginationInterceptor } from '../common/interceptors/pagination.interceptor';
+import { ReviewsService } from '../reviews/reviews.service';
+import { GetReviewsDTO } from '../reviews/dto/get-reviews.dto';
+import { CreateReviewDto } from '../reviews/dto/create-review.dto';
+import { CreateOwnershipGuard } from '../auth/guards/ownership.guard';
+import { CurrentResource } from '../auth/decorators/current-resource.decorator';
 import { Product } from './entities/products.entity';
 import { ApiBearerAuth } from '@nestjs/swagger';
 

@@ -11,9 +11,9 @@ export default new DataSource({
   // Use the single connection string for both Local and Neon
   url: process.env.DATABASE_URL,
 
-  // Dynamically resolve .js in dist/ (after build) or .ts in src/ (local dev)
-  entities: [isProduction ? 'dist/**/*.entity.js' : 'src/**/*.entity.ts'],
-  migrations: [isProduction ? 'dist/migrations/*.js' : 'src/migrations/*.ts'],
+  // Dynamically resolve .js in dist/ (after build) or .ts in ../../ (local dev)
+  entities: [isProduction ? 'dist/**/*.entity.js' : '../../**/*.entity.ts'],
+  migrations: [isProduction ? 'dist/migrations/*.js' : '../../migrations/*.ts'],
 
   // Required for Neon in production
   ssl: isProduction ? { rejectUnauthorized: false } : false,

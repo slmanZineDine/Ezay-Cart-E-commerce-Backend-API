@@ -8,8 +8,8 @@ import { Repository } from 'typeorm';
 import { User } from './users.entity';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { CryptoService } from 'src/auth/services/crypto.service';
-import { UserRole } from 'src/utils/enums';
+import { CryptoService } from '../auth/services/crypto.service';
+import { UserRole } from '../utils/enums';
 
 @Injectable()
 export class UsersService {

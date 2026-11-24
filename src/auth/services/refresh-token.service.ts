@@ -9,7 +9,7 @@ import {
 } from '../entities/refresh-tokens.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TokensService } from './tokens.service';
-import { User } from 'src/users/users.entity';
+import { User } from '../../users/users.entity';
 import { RefreshTokenContext } from '../interfaces/refresh-token-context';
 import { AuthRequestContext } from '../decorators/auth-context.decorator';
 import { LessThan, Not, Repository } from 'typeorm';
