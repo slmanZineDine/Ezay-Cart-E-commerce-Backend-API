@@ -3,7 +3,7 @@ import {
   ExecutionContext,
   UnauthorizedException,
 } from '@nestjs/common';
-import { REFRESH_TOKEN_COOKIE_NAME } from 'src/utils/constants';
+import { REFRESH_TOKEN_COOKIE_NAME } from '../../utils/constants';
 
 export const RefreshToken = createParamDecorator(
   (data: unknown, context: ExecutionContext) => {

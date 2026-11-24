@@ -2,13 +2,13 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthToken, AuthTokenType } from '../entities/auth-tokens.entity';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../../users/users.service';
 
-import { EmailSenderService } from 'src/common/modules/email/email-sender.service';
+import { EmailSenderService } from '../../common/modules/email/email-sender.service';
 import { ResendTokenDto } from '../dto/resend-token.dto';
 import { TokenCooldownService } from './token-cooldown.service';
 import { CryptoService } from './crypto.service';
-import { EMAIL_SENDER } from 'src/common/modules/email/email-sender.interface';
+import { EMAIL_SENDER } from '../../common/modules/email/email-sender.interface';
 
 @Injectable()
 export class EmailVerificationService {

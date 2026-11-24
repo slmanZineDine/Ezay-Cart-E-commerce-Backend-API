@@ -15,7 +15,7 @@ import {
 } from 'class-validator';
 
 import { Type } from 'class-transformer';
-import { Squish } from 'src/common/decorators/squish.decorator';
+import { Squish } from '../../common/decorators/squish.decorator';
 
 export class CreateProductDto {
   @Squish()

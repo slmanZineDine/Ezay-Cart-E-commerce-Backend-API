@@ -9,22 +9,22 @@ import { DataSource, LessThan, Repository } from 'typeorm';
 
 import { AuthToken, AuthTokenType } from '../entities/auth-tokens.entity';
 
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../../users/users.service';
 
-import { EmailSenderService } from 'src/common/modules/email/email-sender.service';
+import { EmailSenderService } from '../../common/modules/email/email-sender.service';
 import { CryptoService } from './crypto.service';
 import { TokenCooldownService } from './token-cooldown.service';
 import { VerifyResetTokenDto } from '../dto/verify-reset-token.dto';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
-import { User } from 'src/users/users.entity';
-import { EmailNotVerifiedException } from 'src/common/exceptions/email-not-verified.exception';
+import { User } from '../../users/users.entity';
+import { EmailNotVerifiedException } from '../../common/exceptions/email-not-verified.exception';
 import { AuthRequestContext } from '../decorators/auth-context.decorator';
 import { RefreshTokenService } from './refresh-token.service';
 import {
   RefreshToken,
   RefreshTokenRevokeReason,
 } from '../entities/refresh-tokens.entity';
-import { EMAIL_SENDER } from 'src/common/modules/email/email-sender.interface';
+import { EMAIL_SENDER } from '../../common/modules/email/email-sender.interface';
 
 @Injectable()
 export class PasswordResetService {

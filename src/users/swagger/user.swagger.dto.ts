@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { PaginationMetaDto } from 'src/common/dto/pagination-meta.dto';
-import { UserRole } from 'src/utils/enums';
+import { PaginationMetaDto } from '../../common/dto/pagination-meta.dto';
+import { UserRole } from '../../utils/enums';
 
 export class UserResponseDto {
   @ApiProperty()

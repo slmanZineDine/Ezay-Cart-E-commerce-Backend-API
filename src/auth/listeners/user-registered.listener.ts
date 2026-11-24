@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { EmailVerificationService } from '../services/email-verification.service';
-import { EmailSenderService } from 'src/common/modules/email/email-sender.service';
+import { EmailSenderService } from '../../common/modules/email/email-sender.service';
 import { UserRegisteredEvent } from '../events/user-registered.event';
-import { EMAIL_SENDER } from 'src/common/modules/email/email-sender.interface';
+import { EMAIL_SENDER } from '../../common/modules/email/email-sender.interface';
 
 @Injectable()
 export class UserRegisteredListener {

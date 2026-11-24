@@ -20,10 +20,10 @@ import {
 // import { extname } from 'path';
 import { UploadsService } from './services/uploads.service';
 // import { CloudinaryService } from './services/cloudinary.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-// import { createSecureFilePipe } from 'src/common/pipes/file-upload.pipe';
-import type { JwtPayload } from 'src/auth/interfaces/jwt-payload.interface';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+// import { createSecureFilePipe } from 'common/pipes/file-upload.pipe';
+import type { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('uploads')

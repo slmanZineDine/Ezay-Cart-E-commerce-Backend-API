@@ -11,9 +11,9 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsGreaterThan } from 'src/common/decorators/is-greater-than.decorator';
-import { Squish } from 'src/common/decorators/squish.decorator';
-import { ProductSortBy, SortOrder } from 'src/utils/enums';
+import { IsGreaterThan } from '../../common/decorators/is-greater-than.decorator';
+import { Squish } from '../../common/decorators/squish.decorator';
+import { ProductSortBy, SortOrder } from '../../utils/enums';
 
 export class GetProductsDTO {
   @ApiPropertyOptional({

@@ -3,7 +3,7 @@ import { Response } from 'express';
 import {
   REFRESH_TOKEN_COOKIE_NAME,
   REFRESH_TOKEN_EXPIRES_IN_DAYS,
-} from 'src/utils/constants';
+} from '../../utils/constants';
 
 @Injectable()
 export class AuthCookieService {

@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { RegisterUserDto } from '../dto/register.user.dto';
-import { UserRole } from 'src/utils/enums';
+import { UserRole } from '../../utils/enums';
 import { LoginDto } from '../dto/login.user.dto';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../../users/users.service';
 import { CryptoService } from './crypto.service';
-import { EmailNotVerifiedException } from 'src/common/exceptions/email-not-verified.exception';
+import { EmailNotVerifiedException } from '../../common/exceptions/email-not-verified.exception';
 import { RefreshTokenService } from './refresh-token.service';
 import { AuthRequestContext } from '../decorators/auth-context.decorator';
 import { EventEmitter2 } from '@nestjs/event-emitter';

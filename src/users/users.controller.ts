@@ -10,14 +10,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { UserRole } from 'src/utils/enums';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { UserRole } from '../utils/enums';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
-import type { JwtPayload } from 'src/auth/interfaces/jwt-payload.interface';
+import type { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
 
 import {
   ApiBearerAuth,
@@ -31,7 +31,7 @@ import {
   UserResponseDto,
   PaginatedUsersResponseDto,
 } from './swagger/user.swagger.dto';
-import { PasswordResetService } from 'src/auth/services/password-reset.service';
+import { PasswordResetService } from '../auth/services/password-reset.service';
 
 @ApiTags('Users')
 @ApiBearerAuth()
